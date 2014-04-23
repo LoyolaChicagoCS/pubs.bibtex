@@ -1,1 +1,1 @@
-bibtool bibitems/*.bib -o pervasive.bib
+bibtool $(find bibitems -name '*.bib') -o pervasive.bib
