@@ -1,0 +1,6 @@
+This is just proof-of-concept now.
+
+Run gkt.sh to get George's list.
+Run laufer.sh to get Konstantin's list.
+
+Output is written to gkt/gkt.pdf or laufer/laufer.pdf, respectively.
