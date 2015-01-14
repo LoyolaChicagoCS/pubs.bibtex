@@ -9,9 +9,9 @@ mkdir -p $BUILDDIR
 cat bibitems/luc/*$USERPATTERN*.bib  > $BUILDDIR/input.bib
 cp src/references.tex $BUILDDIR
 pushd $BUILDDIR
-pdflatex references
+pdflatex -interaction nonstopmode references
 bibtex references
-pdflatex references
+pdflatex -interaction nonstopmode references
 cp references.pdf $USER.pdf
 popd
 
