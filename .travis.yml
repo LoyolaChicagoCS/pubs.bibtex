@@ -1,0 +1,8 @@
+language: c
+before_install:
+  - sh ./scripts/install-travis-prereqs.sh
+script:
+  - sh ./generate.sh gkt
+  - sh ./generate.sh laufer
+  - sh ./generate.sh jkaylor
+
