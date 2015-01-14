@@ -2,7 +2,7 @@ language: c
 before_install:
   - sh ./scripts/install-travis-prereqs.sh
 script:
-  - sh ./generate.sh gkt
-  - sh ./generate.sh laufer
-  - sh ./generate.sh jkaylor
+  - bash ./generate.sh gkt
+  - bash ./generate.sh laufer
+  - bash ./generate.sh jkaylor
 

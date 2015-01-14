@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # No validation
 # USER should be something like gkt, laufer
 USER=$1
