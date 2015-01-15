@@ -14,6 +14,6 @@ script:
 - bash ./generate.sh laufer
 - bash ./generate.sh jkaylor
 after_success:
-- tar czf ${BINTRAY_PKG}tar.gz build/
+- tar czf ${BINTRAY_PKG}.tar.gz build/
 - |
   test "${TRAVIS_PULL_REQUEST}" = 'false' && BINTRAY_VERSION=${PROJECT_VERSION}.${TRAVIS_BUILD_NUMBER} && ./.bintray-credentials.sh && curl -H "Content-Type: application/json" -d "{ \"name\": \"${BINTRAY_VERSION}\" }" ${BINTRAY_API}/packages/${BINTRAY_ORG}/generic/${BINTRAY_PKG}/versions && curl -T ${BINTRAY_PKG}.tar.gz "${BINTRAY_API}/content/${BINTRAY_ORG}/generic/${BINTRAY_PKG}/${BINTRAY_VERSION}/${BINTRAY_PKG}-${BINTRAY_VERSION}.tar.gz;publish=1"
