@@ -1,8 +1,19 @@
 language: c
+env:
+  global:
+  - PROJECT_VERSION=0.1
+  - BINTRAY_ORG=$(echo ${TRAVIS_REPO_SLUG%/*} | tr '[:upper:]' '[:lower:]')
+  - BINTRAY_PKG=${TRAVIS_REPO_SLUG#*/}
+  - BINTRAY_API=https://bintray.com/api/v1
+  - BINTRAY_USER=gkthiruvathukal
+  - secure: E5LDqWwqGWrG5ZrA0ogLBckEhvFIHg8tY68ploTs14cSSWG/8meRah2saHqY7sHQDAeB85tgAUIC1qwH1ZcjpW2aOxgMGA1dQq7qzpIqpOvFjp/7DMVB5qIEyh7i3pZ35XnMG6p+T8MeH3ylNtT+w41DaqQV+ocExgIKGua3nLE=
 before_install:
-  - sh ./scripts/install-travis-prereqs.sh
+- sh ./scripts/install-travis-prereqs.sh
 script:
-  - bash ./generate.sh gkt
-  - bash ./generate.sh laufer
-  - bash ./generate.sh jkaylor
-
+- bash ./generate.sh gkt
+- bash ./generate.sh laufer
+- bash ./generate.sh jkaylor
+after_success:
+- tar czf ${BINTRAY_PKG}tar.gz build/
+- |
+  test "${TRAVIS_PULL_REQUEST}" = 'false' && BINTRAY_VERSION=${PROJECT_VERSION}.${TRAVIS_BUILD_NUMBER} && ./.bintray-credentials.sh && curl -H "Content-Type: application/json" -d "{ \"name\": \"${BINTRAY_VERSION}\" }" ${BINTRAY_API}/packages/${BINTRAY_ORG}/generic/${BINTRAY_PKG}/versions && curl -T ${BINTRAY_PKG}.tar.gz "${BINTRAY_API}/content/${BINTRAY_ORG}/generic/${BINTRAY_PKG}/${BINTRAY_VERSION}/${BINTRAY_PKG}-${BINTRAY_VERSION}.tar.gz;publish=1"
