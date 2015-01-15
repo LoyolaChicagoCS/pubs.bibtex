@@ -2,7 +2,9 @@ language: c
 env:
   global:
   - PROJECT_VERSION=0.1
-  - BINTRAY_ORG=$(echo ${TRAVIS_REPO_SLUG%/*} | tr '[:upper:]' '[:lower:]')
+# TODO: Create org.
+# - BINTRAY_ORG=$(echo ${TRAVIS_REPO_SLUG%/*} | tr '[:upper:]' '[:lower:]')
+  - BINTRAY_ORG=loyolachicagocode
   - BINTRAY_PKG=${TRAVIS_REPO_SLUG#*/}
   - BINTRAY_API=https://bintray.com/api/v1
   - BINTRAY_USER=gkthiruvathukal
